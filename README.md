@@ -1,6 +1,6 @@
 # smokeping-mtr-alert
 
-** Modified for gotify **
+**Modified for gotify**
 
 When SmokePing detects an [alert](http://oss.oetiker.ch/smokeping/doc/smokeping_config.en.html#___top) condition it can be configured to run a script instead of sending an e-mail.
 
