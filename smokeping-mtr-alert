@@ -44,7 +44,7 @@ if __name__ == "__main__":
 
     mtr_command = "mtr -n --report %s" % pipes.quote(args.hostname)
     try:
-        mtr_output = subprocess.check_output(mtr_command.split()).strip()
+        mtr_output = subprocess.check_output(mtr_command.split()).decode("utf-8")
     except:
         sys.stderr.write('error running MTR.\n')
         sys.exit(1)
