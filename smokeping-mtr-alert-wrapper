@@ -1,3 +1,2 @@
 #!/bin/sh
-
-python3 smokeping-mtr-alert --url=https://push.example.de/message?token=example --name=unconfigured "$@"
+smokeping-mtr-alert --url=https://push.example.de/message?token=example --name=unconfigured "$@"
