@@ -26,6 +26,7 @@ import pipes
 import socket
 import subprocess
 import sys
+import os
 
 from email.mime.text import MIMEText
 
@@ -39,7 +40,7 @@ if __name__ == "__main__":
     parser.add_argument('loss_pattern', help='loss pattern that has triggered, supplied by smokeping')
     parser.add_argument('rtt', help='current RTT for target, supplied by smokeping')
     parser.add_argument('hostname', help='hostname of target, supplied by smokeping')
-    parser.add_argument('--email', default='root', help='e-mail address to send report, defaults to root')
+    parser.add_argument('--url', default='https://push.example.de/message?token=example', help='gotify url to send report')
     parser.add_argument('--name', default=hostname, help='name of smokeping installation, defaults to hostname where the script runs')
     args = parser.parse_args()
 
@@ -74,13 +75,8 @@ RTT: {rtt}"""
         name=args.name,
     ))
 
-    message["From"] = "smokeping-mtr-alert@%s" % hostname
-    message["To"] = args.email
-    message["Subject"] = "{name} SmokePing alert: {target}".format(name=args.name, target=args.target)
-
     try:
-        p = subprocess.Popen(["/usr/sbin/sendmail", "-t", "-oi"], stdin=subprocess.PIPE)
-        p.communicate(message.as_string())
+        os.system(f'curl "{args.url}" -F "title={name} SmokePing alert: {target}" -F "message={message.as_string()}" -F "priority=5"')
     except:
-        sys.stderr.write('error running sendmail.\n')
+        sys.stderr.write('error running curl.\n')
         sys.exit(1)

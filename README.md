@@ -1,5 +1,7 @@
 # smokeping-mtr-alert
 
+*** Modified for gotify ***
+
 When SmokePing detects an [alert](http://oss.oetiker.ch/smokeping/doc/smokeping_config.en.html#___top) condition it can be configured to run a script instead of sending an e-mail.
 
 This script, when launched from SmokePing, runs an [MTR](http://www.bitwizard.nl/mtr/) traceroute in report mode and e-mails the output to the designated address. This can be useful in providing some clues as to the source of packet loss.
@@ -67,7 +69,7 @@ RTT: U
 The positional arguments to the script will usually be provided by SmokePing itself.
 
 <pre>
-usage: smokeping-mtr-alert [-h] [--email EMAIL] [--name NAME]
+usage: smokeping-mtr-alert [-h] [--url URL] [--name NAME]
                            alert target loss_pattern rtt hostname
 
 Run from SmokePing as a "pipe" alert target. Sends an MTR for the target to
@@ -83,7 +85,7 @@ positional arguments:
 
 optional arguments:
   -h, --help     show this help message and exit
-  --email EMAIL  e-mail address to send report, defaults to root
+  --url URL      gotify url to call
   --name NAME    name of smokeping installation, defaults to hostname where
                  the script runs
 </pre>
