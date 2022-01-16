@@ -1,6 +1,6 @@
 # smokeping-mtr-alert
 
-*** Modified for gotify ***
+** Modified for gotify **
 
 When SmokePing detects an [alert](http://oss.oetiker.ch/smokeping/doc/smokeping_config.en.html#___top) condition it can be configured to run a script instead of sending an e-mail.
 
@@ -8,7 +8,7 @@ This script, when launched from SmokePing, runs an [MTR](http://www.bitwizard.nl
 
 ## Installation
 
-This script requires that MTR and sendmail are installed and available on the path of the user running SmokePing.
+This script requires that MTR and curl are installed and available on the path of the user running SmokePing.
 
 `smokeping-mtr-alert` should be placed in a directory that is readable by the SmokePing user (such as `/usr/local/bin`), and marked as executable. As SmokePing does not permit arguments to be passed to alert scripts you may wish to use a wrapper script to override configuration (such as the destination e-mail address or system name). An example wrapper script is provided in `smokeping-mtr-alert-wrapper`.
 
